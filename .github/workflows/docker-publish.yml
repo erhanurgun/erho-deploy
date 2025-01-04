@@ -1,0 +1,86 @@
+# Workflow'un adı - GitHub Actions sekmesinde görünecek isim
+name: Publish Erho Deploy Docker Image
+
+# Workflow'u tetikleyecek olaylar
+on:
+  push:
+    branches: ["main"]
+    # Semantic versioning için tag'leri de dinle
+    tags: ["v*.*.*"]
+  pull_request:
+    branches: ["main"]
+
+# Tüm job'larda kullanılacak environment değişkenleri
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+# Çalıştırılacak iş tanımları
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    # Security hardening
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+
+    steps:
+      - name: Repository'yi kontrol et
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Tüm history'yi al (semantic versioning için)
+
+      - name: QEMU kurulumu
+        uses: docker/setup-qemu-action@v3
+
+      - name: Docker Buildx kurulumu
+        uses: docker/setup-buildx-action@v3
+        with:
+          buildkitd-flags: --debug # Build sorunlarını daha iyi tespit etmek için
+
+      - name: GitHub Container Registry'e giriş
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GH_PAT }}
+
+      - name: Docker için meta verileri ayıklama
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            # Latest tag
+            type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'main') }}
+
+            # Branch bazlı tag
+            type=ref,event=branch
+
+            # PR bazlı tag
+            type=ref,event=pr
+
+            # Semantic versioning
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+
+            # Kısa SHA
+            type=sha,prefix=sha-,format=short
+
+            # Tarih bazlı tag
+            type=raw,value={{date 'YYYY.MM.DD'}}
+            type=schedule,pattern={{date 'YYYYMMDD'}}
+
+      - name: Docker image build ve push
+        id: build
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          platforms: linux/amd64,linux/arm64
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max

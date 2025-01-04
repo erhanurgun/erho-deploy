@@ -1,0 +1,17 @@
+{
+    "name": "erhanurgun/erho-deploy",
+    "description": "Docker imajlarının nasıl çalıştığının konusunun pekiştirilebilmesi için oluşturulan vitodeploy'un klon imajı",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Erhan ÜRGÜN",
+            "email": "erho@duck.com"
+        }
+    ],
+    "require": {
+        "php": "^8.1"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
