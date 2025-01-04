@@ -336,19 +336,20 @@ jobs:
           cache-to: type=gha,mode=max
 ```
 
+Bu workflow şunları sağlar:
+
+- Base image versiyonu (1.x) merkezi olarak yönetilir.
+- Build argümanları ile versiyon kontrolü sağlanır.
+- GitHub Container Registry ile güvenli entegrasyon sağlanır.
+- Otomatik metadata ve etiket yönetimi ile imajınız daha iyi yönetilebilir.
+- Artık her **push** işleminde otomatik olarak çalışacaktır.
+- Semantic versiyonlama desteğiyle (v1.0, v1.1 gibi tag'ler için) **tag** oluşturulduğunda otomatik olarak çalışacaktır.
+
 Çalıştırıldığında eğer başarılı ise **ilgili repo'nun GitHub Actions** sekmesinde bu şekilde görüntülenecek:
 ![GitHub Actions](./img/ss_gh-actions.png)
 
 Bütün adımlar başarılı ise **GitHub Packages**'da bu şekilde görüntülenecek:
 ![GitHub Packages](./img/ss_gh-packages.png)
-
-Bu workflow şunları sağlar:
-
-- Base image versiyonu (1.x) merkezi olarak yönetilir
-- Semantic versiyonlama desteği (v1.0, v1.1 gibi tag'ler)
-- Otomatik metadata ve etiket yönetimi
-- GitHub Container Registry ile güvenli entegrasyon
-- Build argümanları ile versiyon kontrolü
 
 ### Multi-Stage Build Örneği
 
@@ -413,27 +414,27 @@ CMD ["php-fpm"]
 
 Bu multi-stage build yaklaşımı şu avantajları sağlar:
 
-- Daha küçük final imaj boyutu
-- Build araçlarının final imajda yer almaması
-- Daha güvenli bir production imajı
+- Daha küçük ana imaj boyutu.
+- Build araçlarının ana imajda yer almaması.
+- Daha güvenli bir production imajı.
 
 ## Hangi Platform Sizin İçin Doğru Seçim?
 
 ### Docker Hub'ı Tercih Edin, Eğer
 
-- Sadece Docker imajları ile çalışıyorsanız
-- Community imajlarına sık erişiyorsanız
-- Docker Desktop kullanıyorsanız
-- Basit ve hızlı bir çözüm arıyorsanız
+- Sadece Docker imajları ile çalışıyorsanız.
+- Community imajlarına sık erişiyorsanız.
+- Docker Desktop kullanıyorsanız.
+- Basit ve hızlı bir çözüm arıyorsanız.
 
 ### GitHub Packages'ı Tercih Edin, Eğer
 
-- GitHub'da host edilen projeleriniz varsa
-- Farklı paket türleriyle çalışıyorsanız
-- CI/CD pipeline'larınız GitHub'daysa
-- Gelişmiş güvenlik özelliklerine ihtiyacınız varsa
+- CI/CD pipeline'larınız GitHub'daysa...
+- Farklı paket türleriyle çalışıyorsanız.
+- GitHub'da host edilen projeleriniz varsa...
+- Gelişmiş güvenlik özelliklerine ihtiyacınız varsa...
 
-## Pro İpuçları
+## Öneriler
 
 1. **Hybrid Kullanım**: Her iki platformu da kullanabilirsiniz! Ben genellikle açık kaynak projelerim için Docker Hub, kurumsal projelerim için GitHub Packages kullanıyorum.
 
@@ -441,11 +442,9 @@ Bu multi-stage build yaklaşımı şu avantajları sağlar:
 
 3. **Güvenlik**: Her zaman en güncel güvenlik pratiklerini takip edin ve API tokenlarınızı güvende tutun.
 
-## Sonuç
+## Son Olarak
 
-İşte size Docker imajlarınızı yönetmek için kapsamlı bir rehber! Umarım bu yazı, hangi platformun sizin ihtiyaçlarınıza daha uygun olduğunu belirlemenize yardımcı olmuştur.
-
-Sorularınız varsa, yorumlarda bekliyorum! Ve unutmayın, en iyi öğrenme yöntemi deneyimlemektir. Hadi siz de kendi imajlarınızı oluşturmaya başlayın!
+Umarım bu yazı, hangi platformun sizin ihtiyaçlarınıza daha uygun olduğunu belirlemenize yardımcı olmuştur. Ve unutmayın ki, en iyi öğrenme yöntemi deneyimlemektir...
 
 ---
 
