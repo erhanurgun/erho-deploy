@@ -1,47 +1,54 @@
+![Cover](./img/cover.png)
+
 # Docker İmajları ile Çalışmak: Docker Hub ve GitHub Packages Rehberi
 
-Selamlar! Ben Erhan. Bugün sizlerle Docker dünyasının en önemli konularından biri olan imaj yönetimi hakkında kapsamlı bir rehber hazırladım. Kahvenizi alın, keyifli bir yolculuğa çıkıyoruz.
+Selamlar! Ben Erhan. Bugün sizlerle Docker dünyasının en önemli konularından biri olan imaj yönetimi hakkında kapsamlı bir rehber hazırladım. Çayınızı kahvenizi alın, beraber keyifli bir yolculuğa çıkıyoruz…
 
 ## Neden Bu Rehberi Hazırladım?
 
-Son zamanlarda bana en çok sorulan sorulardan biri: "Docker Hub mu, GitHub Packages mı kullanmalıyım?" oldu. Ben de düşündüm ki, gelin size kendi deneyimlerimden yola çıkarak detaylı bir karşılaştırma yapayım ve hangi platformun sizin için daha uygun olabileceğini birlikte keşfedelim.
+Son zamanlarda bana en çok sorulan sorulardan biri: "**Docker Hub mu, GitHub Packages mı kullanmalıyım?**" oldu. Ben de düşündüm ki, gelin size kendi deneyimlerimden yola çıkarak detaylı bir karşılaştırma yapayım ve hangi platformun sizin için daha uygun olabileceğini birlikte keşfedelim... Hazırsanız başlayalım!
 
 ## Docker Hub ve GitHub Packages: Detaylı Karşılaştırma
 
 ### Fiyatlandırma ve Özellik Karşılaştırması
 
-| Özellik | Docker Hub | GitHub Packages |
-|---------|------------|-----------------|
-| **Ücretsiz Plan** |
-| Public Repo | Sınırsız | Sınırsız |
-| Private Repo | 1 adet | Sınırsız (Storage limitli) |
-| Depolama | Sınırsız | 2GB |
-| Bandwidth | 200 pull/ay | 1GB/ay |
-| Kullanıcı | Tek kullanıcı | Sınırsız |
-| **Ücretli Planlar** |
-| Pro Plan | $5/ay | - |
-| Team Plan | $7/ay/kullanıcı | $4/kullanıcı/ay |
-| Enterprise | Özel fiyatlandırma | Özel fiyatlandırma |
-| **Teknik Özellikler** |
-| Build Otomasyonu | Var | GitHub Actions ile |
-| Multi-arch Desteği | Var | Var |
-| Vulnerability Tarama | Ücretli planlarda | Advanced Security ile |
-| CI/CD Entegrasyonu | Webhook desteği | Native GitHub Actions |
-| **Güvenlik Özellikleri** |
-| Kimlik Doğrulama | Basic Auth | GitHub Auth |
-| Access Tokens | Var | Var |
-| SSO Desteği | Team Plan'da | Enterprise'da |
-| Güvenlik Taraması | Ücretli | Advanced Security ile |
-| **Ekstra Özellikler** |
-| Community Desteği | Çok güçlü | Orta seviye |
-| Official Images | Var | Yok |
-| Paket Çeşitliliği | Sadece Docker | Çoklu paket desteği |
-| Desktop Entegrasyonu | Native | GitHub Desktop ile |
-| **Enterprise Özellikleri** |
-| Team Yönetimi | Var | Organization yapısı |
-| Audit Logging | Var | Detaylı |
-| Support | Premium | Premium |
-| Custom Domain | Var | Var |
+| Özellik              | Docker Hub                          | GitHub Packages            |
+|----------------------|-------------------------------------|----------------------------|
+| **Ücretsiz Plan**    |                                     |                            |
+| Public Repo          | Sınırsız                            | Sınırsız                   |
+| Private Repo         | 1 adet (2GB depolama)               | 500MB                      |
+| Depolama             | 2GB / 5GB / 50GB / 500GB            | 500MB / 2GB                |
+| Bandwidth            | 40 pull/sa                          | 1GB/ay                     |
+| Kullanıcı            | 1 kullanıcı                         | Sınırsız                   |
+| **Ücretli Planlar**  |                                     |                            |
+| Pro                  | $11/ay                              | $4/ay                      |
+| Team                 | $16/kullanıcı/ay                    | $4/kullanıcı/ay            |
+| Business             | $24/kullanıcı/ay                    |  $21/Özel fiyatlandırma    |
+| **Teknik Özellikler**|                                     |                            |
+| Build Otomasyonu     | Docker Build Cloud                  | GitHub Actions ile         |
+| Multi-arch Desteği   | Var                                 | Var                        |
+| Vulnerability Tarama | Docker Scout ile                    | Advanced Security ile      |
+| CI/CD Entegrasyonu   | Docker Build Cloud ve Testcontainers Cloud | Native GitHub Actions      |
+| **Güvenlik Özellikleri**|                                  |                            |
+| Kimlik Doğrulama     | Basic Auth                          | GitHub Auth                |
+| Access Tokens        | Var                                 | Var                        |
+| SSO Desteği          | Docker Business'da                  | GitHub Enterprise Cloud'da |
+| Güvenlik Taraması    | Docker Scout ile                    | Advanced Security ile      |
+| **Ekstra Özellikler**|                                     |                            |
+| Community Desteği    | Çok güçlü                           | Güçlü                      |
+| Official Images      | Var                                 | Yok                        |
+| Paket Çeşitliliği    | Sadece Docker                       | Çoklu paket desteği        |
+| Desktop Entegrasyonu | Docker Desktop                      | GitHub Desktop ile         |
+| **Enterprise Özellikleri**|                                |                            |
+| Team Yönetimi        | Docker Team ve Business planlarında | Organization yapısı        |
+| Audit Logging        | Docker Team ve Business planlarında | GitHub Enterprise Cloud'da |
+| Support              | Premium                             | Premium                    |
+| Custom Domain        | Docker Business'da                  | GitHub Enterprise Cloud'da |
+
+Bu bilgiler ilerleyen zamanlarda değişiklik gösterebilir. Güncel bilgiler ve daha fazla detay için bkz:
+
+- Docker Hub: <https://docker.com/pricing>
+- GitHub Packages: <https://github.com/pricing>
 
 ### Performans ve Kullanım Senaryoları
 
@@ -71,18 +78,20 @@ Son zamanlarda bana en çok sorulan sorulardan biri: "Docker Hub mu, GitHub Pack
 
 - GitHub'un güçlü güvenlik altyapısı
 - Detaylı erişim kontrolü
-- GHCR desteği
+- GHCR (GitHub Container Registry) desteği
 - Bağımlılık grafiği ve güvenlik uyarıları
 - Gelişmiş güvenlik özellikleri (CodeQL, gizli tarama)
 - SBOM (Software Bill of Materials) desteği
 - Cosign ile imaj imzalama (opsiyonel)
 - Supply chain güvenliği için Sigstore entegrasyonu
 
-**Güvenlik İpucum**: Kurumsal projelerde GitHub Packages'ın gelişmiş güvenlik özellikleri size çok daha fazla kontrol ve görünürlük sağlıyor.
+**Gözlemim**: Kurumsal projelerde GitHub Packages'ın gelişmiş güvenlik özellikleri size çok daha fazla kontrol ve görünürlük sağlıyor.
 
 ## Pratik Uygulama: Base Image'dan Özel İmaj Oluşturma
 
-Hadi şimdi teoriden pratiğe geçelim! Size gerçek bir örnek üzerinden hem Docker Hub hem de GitHub Packages kullanımını göstereceğim. Bu örnekte, Vito'nun resmi imajını ([base image](https://hub.docker.com/r/vitodeploy/vito)) kullanarak kendi özelleştirilmiş deployment imajımızı ([erho-deploy](ghcr.io/erhanurgun/erho-deploy)) oluşturacağız.
+Hadi şimdi teoriden pratiğe geçelim! Size gerçek bir örnek üzerinden hem Docker Hub hem de GitHub Packages kullanımını göstereceğim. Bu örnekte, Vito'nun resmi imajını ([base image](https://hub.docker.com/r/vitodeploy/vito)) kullanarak kendi özelleştirilmiş deployment imajımızı ([erho-deploy](ghcr.io/erhanurgun/erho-deploy)) oluşturacağız...
+
+**DİPNOT:** Kişisel imajlarınızı da bu şekilde oluşturabilirsiniz. İmajın varolan bir imajdan türetilerek oluşturulması zorunlu değildir, bu sadece bir örnek!
 
 ### 1. Dockerfile Hazırlama
 
@@ -96,7 +105,7 @@ FROM vitodeploy/vito:1.x
 WORKDIR /var/www/html
 COPY . .
 
-# Gerekli kurulumları yapıyoruz
+# Gerekli kurulumları ve ayarları yapıyoruz
 RUN composer install --no-dev --optimize-autoloader
 RUN php artisan config:cache
 
@@ -118,7 +127,7 @@ docker login
 docker push erhanurgun/erho-deploy:1.0.1
 ```
 
-Bütün adımlar başarılı ise Docker Hub'da bu şekilde görüntülenecek:
+Bütün adımlar başarılı ise [Docker Hub](https://hub.docker.com)'da bu şekilde görüntülenecek:
 ![Docker Hub](./img/ss_docker-hub.png)
 
 ### 3. GitHub Packages'a İmaj Gönderme
@@ -146,13 +155,14 @@ GitHub Packages'ı kullanabilmek için öncelikle bir Personal Access Token olu�
 CI/CD süreçleri için token'ı GitHub Secrets'a eklemeniz gerekiyor:
 
 1. GitHub'da projenizin sayfasına gidin.
-2. **`Settings > Secrets and variables > Actions`** yolunu izleyin. Ör: `https://github.com/{kullanici-adi}/{repo-adi}/settings/secrets/actions`
+2. **`Settings > Secrets and variables > Actions`** yolunu izleyin.
+   Ör: `https://github.com/{kullanici-adi}/{repo-adi}/settings/secrets/actions`
 3. "**New repository secret**" butonuna tıklayın.
 4. **Name**: `GH_PAT` olarak girin.
 5. **Value**: Yukarıda oluşturduğunuz `Personal Access Token (PAT)` değerini girin.
 6. "**Add secret**" butonuna tıklayın.
 
-Daha açıklayıcı olması adına görselleştirelim:
+Daha açıklayıcı olması adına süreci görselleştirelim:
 ![GitHub Secrets](./img/ss_gh-secrets.png)
 
 #### İmaj Gönderme İşlemi
@@ -175,10 +185,10 @@ docker push ghcr.io/erhanurgun/erho-deploy:dev
 
 **Önemli Güvenlik Notları**:
 
-- Token'ınızı asla doğrudan kodunuzda veya Dockerfile'da saklamayın
-- Token'ı güvenli bir şekilde yönetin ve düzenli olarak yenileyin
-- Minimum gerekli izinlerle token oluşturun
-- Production ortamında environment variable veya secrets kullanın
+- Token'ınızı **asla** doğrudan _kodunuzda_ veya _Dockerfile_'da saklamayın.
+- Token'ı güvenli bir şekilde yönetin ve düzenli olarak yenileyin.
+- Minimum gerekli izinlerle token oluşturun!
+- Production ortamında environment variable veya secrets kullanın.
 - PowerShell komut geçmişinden `GH_PAT` değişkeninin bilgilerini silmek için: (opsiyonel)
 
   ```powershell
@@ -206,18 +216,18 @@ LABEL org.opencontainers.image.source https://github.com/erhanurgun/erho-deploy
 
 #### 2. Web Arayüzü ile Bağlama
 
-1. GitHub Packages'ta **imajınızın sayfasına gidin**
-2. "**Connect Repository**" butonuna tıklayın
-3. Bağlamak istediğiniz **repository'i seçin**
+1. GitHub Packages'ta **imajınızın sayfasına gidin**.
+2. "**Connect Repository**" butonuna tıklayın.
+3. Bağlamak istediğiniz **repository'i seçin**.
 
 **Önemli Not**: Repository ve container imajının namespace'i (kullanıcı/organizasyon adı) aynı olmalıdır. Örneğin, imajınız `ghcr.io/erhanurgun/erho-deploy` ise, repository de `erhanurgun/erho-deploy` olmalıdır.
 
 **Bağlama Avantajları**:
 
-- README dosyası otomatik olarak görüntülenir
-- Issue ve tartışmalar imaj sayfasında görünür
-- Katkıda bulunanlar listelenir
-- Repository ile imaj arasında otomatik link oluşur
+- README dosyası otomatik olarak görüntülenir.
+- Issue ve tartışmalar imaj sayfasında görünür.
+- Katkıda bulunanlar listelenir.
+- Repository ile imaj arasında otomatik link oluşur.
 
 ### 4. GitHub Actions ile Otomatik Deploy
 
@@ -234,7 +244,7 @@ FROM vitodeploy/vito:${BASE_IMAGE_VERSION}
 WORKDIR /var/www/html
 COPY . .
 
-# Gerekli kurulumları yapıyoruz
+# Gerekli kurulumları ve ayarları yapıyoruz
 RUN composer install --no-dev --optimize-autoloader
 RUN php artisan config:cache
 
@@ -336,7 +346,7 @@ jobs:
           cache-to: type=gha,mode=max
 ```
 
-Bu workflow şunları sağlar:
+**Bu workflow şunları sağlar:**
 
 - Base image versiyonu (1.x) merkezi olarak yönetilir.
 - Build argümanları ile versiyon kontrolü sağlanır.
@@ -345,15 +355,19 @@ Bu workflow şunları sağlar:
 - Artık her **push** işleminde otomatik olarak çalışacaktır.
 - Semantic versiyonlama desteğiyle (v1.0, v1.1 gibi tag'ler için) **tag** oluşturulduğunda otomatik olarak çalışacaktır.
 
-Çalıştırıldığında eğer başarılı ise **ilgili repo'nun GitHub Actions** sekmesinde bu şekilde görüntülenecek:
+**EK BİLGİ:** Ayrıca, **Docker Scout'u GitHub Actions ile entegre etme** için bkz: <https://docs.docker.com/scout/integrations/ci/gha>
+
+Workflow çalıştırıldığında eğer başarılı ise **ilgili repo'nun GitHub Actions** sekmesinde bu şekilde görüntülenecek:
 ![GitHub Actions](./img/ss_gh-actions.png)
 
 Bütün adımlar başarılı ise **GitHub Packages**'da bu şekilde görüntülenecek:
 ![GitHub Packages](./img/ss_gh-packages.png)
 
-### Multi-Stage Build Örneği
+### Multi-Stage Build Örneği (Opsiyonel)
 
-Şimdi `Dockerfile` dosyamını biraz daha geliştirelim... Daha optimize bir Dockerfile için multi-stage build kullanabilirsiniz:
+Şimdi `Dockerfile` dosyamını biraz daha geliştirelim... Daha optimize bir _Dockerfile_ için _multi-stage build_ kullanabilirsiniz:
+
+- Bu işlemler bir [Laravel](https://laravel.com) projesi olan [vitodeploy/vito](https://hub.docker.com/r/vitodeploy/vito) imajı referans alınarak yapılmıştır!
 
 ```dockerfile
 # Composer kurulum aşaması
@@ -412,7 +426,7 @@ EXPOSE 80
 CMD ["php-fpm"]
 ```
 
-Bu multi-stage build yaklaşımı şu avantajları sağlar:
+_Bu multi-stage build yaklaşımı şu avantajları sağlar:_
 
 - Daha küçük ana imaj boyutu.
 - Build araçlarının ana imajda yer almaması.
@@ -434,17 +448,17 @@ Bu multi-stage build yaklaşımı şu avantajları sağlar:
 - GitHub'da host edilen projeleriniz varsa...
 - Gelişmiş güvenlik özelliklerine ihtiyacınız varsa...
 
-## Öneriler
+## Önerilerim
 
 1. **Hybrid Kullanım**: Her iki platformu da kullanabilirsiniz! Ben genellikle açık kaynak projelerim için Docker Hub, kurumsal projelerim için GitHub Packages kullanıyorum.
 
 2. **Cache Stratejisi**: GitHub Packages'ın GitHub Actions ile native entegrasyonu, build sürelerini önemli ölçüde düşürüyor.
 
-3. **Güvenlik**: Her zaman en güncel güvenlik pratiklerini takip edin ve API tokenlarınızı güvende tutun.
+3. **Güvenlik**: Her zaman en güncel güvenlik pratiklerini takip edin ve API tokenlarınızın güvenliğinden emin olun.
 
 ## Son Olarak
 
-Umarım bu yazı, hangi platformun sizin ihtiyaçlarınıza daha uygun olduğunu belirlemenize yardımcı olmuştur. Ve unutmayın ki, en iyi öğrenme yöntemi deneyimlemektir...
+Umarım bu yazı, hangi platformun sizin ihtiyaçlarınıza daha uygun olduğunu belirlemenize yardımcı olmuştur. Ve unutmayın ki, en iyi öğrenme yöntemi deneyimlemektir... O yüzden sizlere naçizane tavsiyem; hemen bir proje oluşturun ve bu platformları deneyimleyerek anlatılanları pekiştirin!
 
 ---
 

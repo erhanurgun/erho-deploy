@@ -1,2 +1,7 @@
 /.vscode
 /.idea
+
+/node_modules
+/vendor
+/build
+/dist
