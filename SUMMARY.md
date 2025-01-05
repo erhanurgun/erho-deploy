@@ -20,5 +20,3 @@ Daha fazlası için takipte kalın!
 - <https://lnkd.in/dCSADZMB>
 - <https://erhanurgun.tr>
 - <https://erho.me>
-
-# Docker #DevOps #GitHub #ContainerRegistry #SoftwareDevelopment #CloudComputing #TechBlog
